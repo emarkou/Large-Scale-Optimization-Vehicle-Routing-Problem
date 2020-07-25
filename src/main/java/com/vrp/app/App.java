@@ -104,7 +104,7 @@ public class App {
             int vehicle = j + 1;
             resultOutput.append("Assignment to Vehicle " + vehicle + ": ");
             for (int k = 0; k < solution.getRoute().get(j).getNodes().size(); k++) {
-                resultOutput.append(solution.getRoute().get(j).getNodes().get(k).getId() + " ");
+                resultOutput.append(solution.getRoute().get(j).getNodes().get(k).getId() + "  ");
             }
             resultOutput.append("\n");
             resultOutput.append("Route Cost: " + solution.getRoute().get(j).getCost() + " - Route Load: " + solution.getRoute().get(j).getLoad() + "\n");

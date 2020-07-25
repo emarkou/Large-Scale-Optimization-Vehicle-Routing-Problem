@@ -15,6 +15,7 @@ public class Solution {
         return route;
     }
 
+    //TODO: fix mods
     private static Solution cloneSolution(Solution solution) {
         Solution out = new Solution();
         out.cost = solution.cost;
@@ -27,6 +28,6 @@ public class Solution {
     }
 
     public void setCost(double costs) {
-        cost = costs;
+        this.cost = costs;
     }
 }
