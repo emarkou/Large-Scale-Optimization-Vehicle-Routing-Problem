@@ -1,12 +1,11 @@
-package com.vrp.app;
+package com.vrp.app.components;
 
 public class Node {
-    int x;
-    int y;
-    int id;
-    int demand;
+    private int x;
+    private int y;
+    private int id;
+    private int demand;
 
-    // true/false flag indicating if a customer has been inserted in the solution
     boolean routable;
 
     public Node(int x, int y, int id, int demand) {
@@ -42,6 +41,13 @@ public class Node {
 
     public int getId() {
         return id;
+    }
 
+    public void setId(int index) {
+        this.id = index;
+    }
+
+    public int getDemand() {
+        return demand;
     }
 }
