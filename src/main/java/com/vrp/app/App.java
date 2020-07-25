@@ -1,6 +1,10 @@
 package com.vrp.app;
 
 
+import com.vrp.app.components.Node;
+import com.vrp.app.components.Route;
+import com.vrp.app.components.Solution;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -24,19 +28,19 @@ public class App {
 
         // VRP heuristic
         Solution solution = new Solution();
-        ArrayList<Route> routes = solution.route;
+        ArrayList<Route> routes = solution.getRoute();
 
         for (int i = 1; i <= numberOfVehicles; i++) {
             Route route_nodes = new Route();
-            route_nodes.ID = i;
+            route_nodes.setID(i);
             routes.add(route_nodes);
         }
 
         int toRoute = numberOfCustomers;
         for (int j = 1; j <= numberOfVehicles; j++) {
-            ArrayList<Node> nodeSequence = routes.get(j - 1).nodes;
-            int remaining = routes.get(j - 1).capacity;
-            int load = routes.get(j - 1).load;
+            ArrayList<Node> nodeSequence = routes.get(j - 1).getNodes();
+            int remaining = routes.get(j - 1).getCapacity();
+            int load = routes.get(j - 1).getLoad();
             nodeSequence.add(depot);
             boolean finalized = false;
             if (toRoute == 0) {
@@ -51,8 +55,8 @@ public class App {
                 for (int k = 1; k < allNodes.size(); k++) {
                     Node candidate = allNodes.get(k);
                     if (!candidate.getRouted()) {
-                        double trialCost = distanceMatrix[lastInTheRoute.id][candidate.id];
-                        if (trialCost < bestCostForTheNextOne && candidate.demand <= remaining) {
+                        double trialCost = distanceMatrix[lastInTheRoute.getId()][candidate.getId()];
+                        if (trialCost < bestCostForTheNextOne && candidate.getDemand() <= remaining) {
                             positionOfTheNextOne = k;
                             bestCostForTheNextOne = trialCost;
                         }
@@ -62,21 +66,23 @@ public class App {
                 if (positionOfTheNextOne != -1) {
                     Node insertedNode = allNodes.get(positionOfTheNextOne);
                     nodeSequence.add(insertedNode);
-                    solution.cost = solution.cost + bestCostForTheNextOne;
-                    routes.get(j - 1).cost = routes.get(j - 1).cost + bestCostForTheNextOne;
+                    solution.setCost(solution.getCost() + bestCostForTheNextOne);
+                    routes.get(j - 1).setCost(routes.get(j - 1).getCost() + bestCostForTheNextOne);
                     insertedNode.setRouted(true);
-                    remaining = remaining - insertedNode.demand;
-                    load = load + insertedNode.demand;
-                    routes.get(j - 1).load = load;
+                    remaining = remaining - insertedNode.getDemand();
+                    load = load + insertedNode.getDemand();
+                    routes.get(j - 1).setLoad(load);
                     toRoute = toRoute - 1;
                 } else {
                     nodeSequence.add(depot);
-                    solution.cost = solution.cost + distanceMatrix[lastInTheRoute.id][0];
-                    routes.get(j - 1).cost = routes.get(j - 1).cost + distanceMatrix[lastInTheRoute.id][0];
+                    solution.setCost(solution.getCost() + distanceMatrix[lastInTheRoute.getId()][0]);
+                    routes.get(j - 1).setCost(routes.get(j - 1).getCost() + distanceMatrix[lastInTheRoute.getId()][0]);
                     finalized = true;
                 }
             }
         }
+
+
         printResults(numberOfVehicles, solution);
     }
 
@@ -97,15 +103,15 @@ public class App {
         for (int j = 0; j < numberOfVehicles; j++) {
             int vehicle = j + 1;
             resultOutput.append("Assignment to Vehicle " + vehicle + ": ");
-            for (int k = 0; k < solution.route.get(j).nodes.size(); k++) {
-                resultOutput.append(solution.route.get(j).nodes.get(k).id + " ");
+            for (int k = 0; k < solution.getRoute().get(j).getNodes().size(); k++) {
+                resultOutput.append(solution.getRoute().get(j).getNodes().get(k).getId() + " ");
             }
             resultOutput.append("\n");
-            resultOutput.append("Route Cost: " + solution.route.get(j).cost + " - Route Load: " + solution.route.get(j).load + "\n");
+            resultOutput.append("Route Cost: " + solution.getRoute().get(j).getCost() + " - Route Load: " + solution.getRoute().get(j).getLoad() + "\n");
             resultOutput.append("\n");
         }
         resultOutput.append("* * * * * * * * * * * * * * * * * * * * * * * * * *\n");
-        resultOutput.append("Total Cost: " + solution.cost + "\n");
+        resultOutput.append("Total Cost: " + solution.getCost() + "\n");
         System.out.println(resultOutput);
     }
 

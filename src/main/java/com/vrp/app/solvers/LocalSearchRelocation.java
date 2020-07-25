@@ -1,4 +1,4 @@
 package com.vrp.app.solvers;
 
-public class LocalSearchRelocation {
+public class LocalSearchRelocation extends LocalSearch {
 }
