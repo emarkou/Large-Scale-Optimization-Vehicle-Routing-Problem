@@ -21,54 +21,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  * */
-package com.vrp.app.components;
+package com.vrp.app;
 
-import java.util.ArrayList;
+import static org.junit.Assert.assertTrue;
 
-public class Route {
-    private ArrayList<Node> nodes;
-    private double cost;
-    private int ID;
-    private int load;
-    private int capacity;
+import org.junit.Test;
 
-    public Route() {
-        this.cost = 0;
-        this.ID = -1;
-        this.capacity = 50;
-        this.load = 0;
-        this.nodes = new ArrayList<Node>();
+/**
+ * Unit test for simple App.
+ */
+public class VRPTest {
+    /**
+     * Rigorous Test :-)
+     */
+    @Test
+    public void shouldAnswerWithTrue() {
+        assertTrue(true);
     }
 
-    public ArrayList<Node> getNodes() {
-        return nodes;
+    @Test
+    public void shouldAnswerWithTrue1() {
+        assertTrue(true);
     }
 
-    public double getCost() {
-        return cost;
+    @Test
+    public void shouldAnswerWithTrue2() {
+        assertTrue(true);
     }
 
-    public int getLoad() {
-        return load;
-    }
-
-    public int getID() {
-        return ID;
-    }
-
-    public int getCapacity() {
-        return capacity;
-    }
-
-    public void setCost(double cost) {
-        this.cost = cost;
-    }
-
-    public void setLoad(int load) {
-        this.load = load;
-    }
-
-    public void setID(int idx) {
-        this.ID = idx;
+    @Test
+    public void shouldAnswerWithTrue3() {
+        assertTrue(true);
     }
 }

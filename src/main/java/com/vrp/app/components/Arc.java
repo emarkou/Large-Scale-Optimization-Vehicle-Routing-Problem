@@ -23,52 +23,28 @@
  * */
 package com.vrp.app.components;
 
-import java.util.ArrayList;
+public class Arc {
+    private int n1;
+    private int n2;
 
-public class Route {
-    private ArrayList<Node> nodes;
-    private double cost;
-    private int ID;
-    private int load;
-    private int capacity;
-
-    public Route() {
-        this.cost = 0;
-        this.ID = -1;
-        this.capacity = 50;
-        this.load = 0;
-        this.nodes = new ArrayList<Node>();
+    public Arc(int a, int b) {
+        this.n1 = a;
+        this.n2 = b;
     }
 
-    public ArrayList<Node> getNodes() {
-        return nodes;
+    public int getN1() {
+        return n1;
     }
 
-    public double getCost() {
-        return cost;
+    public void setN1(int n1) {
+        this.n1 = n1;
     }
 
-    public int getLoad() {
-        return load;
+    public int getN2() {
+        return n2;
     }
 
-    public int getID() {
-        return ID;
-    }
-
-    public int getCapacity() {
-        return capacity;
-    }
-
-    public void setCost(double cost) {
-        this.cost = cost;
-    }
-
-    public void setLoad(int load) {
-        this.load = load;
-    }
-
-    public void setID(int idx) {
-        this.ID = idx;
+    public void setN2(int n2) {
+        this.n2 = n2;
     }
 }
