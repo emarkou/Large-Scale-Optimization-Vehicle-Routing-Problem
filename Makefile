@@ -4,7 +4,7 @@ build:
 	mvn -T1.5C clean package -DskipTests
 
 run: 
-	java -cp target/vrp-1.0-SNAPSHOT.jar com.vrp.app.VRP
+	java -cp target/vrp-1.0-SNAPSHOT.jar com.vrp.app.VRP 1 30 10
 
 run-all: 	
 	java -cp target/vrp-1.0-SNAPSHOT.jar com.vrp.app.VRP 1 30 10

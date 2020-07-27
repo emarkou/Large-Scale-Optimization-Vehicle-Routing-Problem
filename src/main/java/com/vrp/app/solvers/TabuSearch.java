@@ -24,6 +24,7 @@
 package com.vrp.app.solvers;
 
 import com.vrp.app.Solver;
+import com.vrp.app.VRP;
 import com.vrp.app.components.Arc;
 import com.vrp.app.components.Node;
 import com.vrp.app.components.RelocationMove;
@@ -47,7 +48,6 @@ public class TabuSearch implements Solver {
     private Solution solution;
     private int[][] tabuArcs;
     private int TABU;
-    private final boolean DEBUG_ROUTES = true;
 
     public TabuSearch(int numberOfVehicles, int numberOfCustomers, ArrayList<Node> allNodes, Node depot, double[][] distanceMatrix) {
         this.numberOfVehicles = numberOfVehicles;
@@ -110,7 +110,7 @@ public class TabuSearch implements Solver {
                 }
             }
         }
-        if (DEBUG_ROUTES) {
+        if (VRP.DEBUG_ROUTES) {
             System.out.println(debug);
         }
     }
@@ -180,7 +180,7 @@ public class TabuSearch implements Solver {
                 }
             }
         }
-    }
+    }       
 
     private void applyRelocationMove(RelocationMove relocationMove, Solution currentSolution, int iterations) {
         Node relocatedNode = currentSolution.getRoute().get(relocationMove.getFromRoute()).getNodes().get(relocationMove.getPositionOfRelocated());

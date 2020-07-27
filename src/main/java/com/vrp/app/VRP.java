@@ -35,6 +35,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class VRP {
+    public static final boolean DEBUG_ROUTES = false;
     private static int numberOfCustomers = 30;
     private static int numberOfVehicles = 10;
     private static int algorithm = 1;
