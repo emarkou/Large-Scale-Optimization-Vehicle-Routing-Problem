@@ -101,7 +101,7 @@ public class NearestNeighbor implements Solver {
                     remaining = remaining - insertedNode.getDemand();
                     load = load + insertedNode.getDemand();
                     routes.get(j - 1).setLoad(load);
-                    toRoute = toRoute - 1;
+                    toRoute--;
                 } else {
                     nodeSequence.add(depot);
                     solution.setCost(solution.getCost() + distanceMatrix[lastInTheRoute.getId()][0]);

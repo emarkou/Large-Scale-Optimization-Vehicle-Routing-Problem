@@ -46,15 +46,6 @@ public class LocalSearchIntraAndInterRelocation implements Solver {
 
     private Solution solution;
 
-    public LocalSearchIntraAndInterRelocation(int numberOfVehicles, int numberOfCustomers, ArrayList<Node> allNodes, Node depot, double[][] distanceMatrix, Solution solution) {
-        this.numberOfVehicles = numberOfVehicles;
-        this.numberOfCustomers = numberOfCustomers;
-        this.allNodes = allNodes;
-        this.depot = depot;
-        this.distanceMatrix = distanceMatrix;
-        this.solution = solution;
-    }
-
     public LocalSearchIntraAndInterRelocation(int numberOfVehicles, int numberOfCustomers, ArrayList<Node> allNodes, Node depot, double[][] distanceMatrix) {
         this.numberOfVehicles = numberOfVehicles;
         this.numberOfCustomers = numberOfCustomers;
@@ -70,7 +61,8 @@ public class LocalSearchIntraAndInterRelocation implements Solver {
         int localSearchIterator = 0;
 
         RelocationMove relocationMove = new RelocationMove(-1, -1, 0, 0, Double.MAX_VALUE, Double.MAX_VALUE);
-        while (terminationCondition == false) {
+
+        while (!terminationCondition) {
             findBestRelocationMove(relocationMove, solution, distanceMatrix, numberOfVehicles);
 
             if (relocationMove.getMoveCost() < 0) {
@@ -79,9 +71,7 @@ public class LocalSearchIntraAndInterRelocation implements Solver {
             } else {
                 terminationCondition = true;
             }
-
         }
-
     }
 
     private void applyRelocationMove(RelocationMove relocationMove, Solution currentSolution) {

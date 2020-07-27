@@ -73,7 +73,7 @@ public class TabuSearch implements Solver {
     public void run() {
         int tabuSearchIterator = 0;
         int MAX_ITERATIONS = 100;
-        int bestsolutioniter = 0;
+        int bestSolutionIterator = 0;
         StringBuilder debug = new StringBuilder();
 
         TABU = 18;
@@ -90,7 +90,7 @@ public class TabuSearch implements Solver {
 
             if (solution.getCost() < (bestSolution.getCost() - TOLERANCE)) {
                 bestSolution = Solution.cloneSolution(solution);
-                bestsolutioniter = tabuSearchIterator;
+                bestSolutionIterator = tabuSearchIterator;
             }
 
             debug.append("Iteration: " + tabuSearchIterator + " Best Cost: " + bestSolution.getCost() + " Current Cost: " + solution.getCost() + "\n");
@@ -111,6 +111,7 @@ public class TabuSearch implements Solver {
             }
         }
         if (VRP.DEBUG_ROUTES) {
+            debug.append("Best Solution Iteration: " + bestSolutionIterator + "\n");
             System.out.println(debug);
         }
     }
@@ -180,7 +181,7 @@ public class TabuSearch implements Solver {
                 }
             }
         }
-    }       
+    }
 
     private void applyRelocationMove(RelocationMove relocationMove, Solution currentSolution, int iterations) {
         Node relocatedNode = currentSolution.getRoute().get(relocationMove.getFromRoute()).getNodes().get(relocationMove.getPositionOfRelocated());
@@ -217,14 +218,14 @@ public class TabuSearch implements Solver {
         setSolution(currentSolution);
     }
 
-    private boolean isTabuArcs(ArrayList<Arc> toBeCrt, double moveCost, Solution currentSolution, int iter, Solution bestSolution) {
-        if (currentSolution.getCost() + moveCost < bestSolution.getCost() - TOLERANCE) {
+    private boolean isTabuArcs(ArrayList<Arc> toBeCrt, double moveCost, Solution currentSolution, int iteration, Solution bestSolution) {
+        if ((currentSolution.getCost() + moveCost) < (bestSolution.getCost() - TOLERANCE)) {
             return false;
         }
 
         for (int i = 0; i < toBeCrt.size(); i++) {
             Arc arc = toBeCrt.get(i);
-            if (iter < tabuArcs[arc.getN1()][arc.getN2()]) {
+            if (iteration < tabuArcs[arc.getN1()][arc.getN2()]) {
                 return true;
             }
         }

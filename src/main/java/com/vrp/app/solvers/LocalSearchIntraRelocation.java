@@ -59,7 +59,7 @@ public class LocalSearchIntraRelocation implements Solver {
 
         RelocationMove relocationMove = new RelocationMove(-1, -1, 0, Double.MAX_VALUE);
 
-        while (terminationCondition == false) {
+        while (!terminationCondition) {
             findBestRelocationMove(relocationMove, solution, distanceMatrix, numberOfVehicles);
 
             if (relocationMove.getMoveCost() < 0) {
@@ -95,6 +95,7 @@ public class LocalSearchIntraRelocation implements Solver {
         }
 
         double newSolutionCost = 0;
+
         for (int i = 0; i < currentSolution.getRoute().get(relocationMove.getRoute()).getNodes().size() - 1; i++) {
             Node A = currentSolution.getRoute().get(relocationMove.getRoute()).getNodes().get(i);
             Node B = currentSolution.getRoute().get(relocationMove.getRoute()).getNodes().get(i + 1);
@@ -147,5 +148,4 @@ public class LocalSearchIntraRelocation implements Solver {
         }
         setSolution(currentSolution);
     }
-
 }
