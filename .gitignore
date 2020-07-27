@@ -1,0 +1,13 @@
+*.class
+*.iml
+.project
+.classpath
+.o
+.log
+.idea/*
+*.lst
+*.jar
+*.txt
+*.xml
+*.lst
+
