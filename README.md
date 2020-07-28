@@ -1,4 +1,5 @@
 # Vehicle Routing Problem (VRP) Solvers
+[![HitCount](http://hits.dwyl.com/emarkou/Large-Scale-Optimization-Vehicle-Routing-Problem.svg)](http://hits.dwyl.com/emarkou/Large-Scale-Optimization-Vehicle-Routing-Problem)
 
 Java Constraint Solvers for Vehicle Routing Problem (VRP).
 
